@@ -1,0 +1,5 @@
+# Ignore ide config.
+.idea/*
+
+# Ignore git history
+.history
