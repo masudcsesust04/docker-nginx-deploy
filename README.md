@@ -6,6 +6,7 @@ Web application deployment using docker, docker-compose and manage multiple envi
 - Open docker-compose.yml file and update the service and images you will be using for each service as per instruction in the compose file.
 
 ## Database configuration ex- username, db, password
+- Make a copy of ```.env``` from ```.env.sample``` 
 - Modify .env file and set corresponding values related to database and application specific secrect values.  
 
 Run database service service defined in docker-compose.yml file
