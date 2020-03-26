@@ -7,12 +7,12 @@ services:
     env_file:
       - .env
     ports:
-      - 3306:3306
+      - 3307:3306
     volumes:
       - ./mysql-data:/var/lib/mysql 
   app:
     # Here, Image name with [docker hub username]/[app_image_name]:[build_tag_version]
-    image: masudcsesust04/rails-web-starter:latest 
+    image: masudcsesust04/rails-starter-app:latest 
     restart: always
     volumes:
       # Here, rails-web-starter = docker image root path defined in docker file
@@ -20,6 +20,7 @@ services:
       - ./production/config/database.yml:/var/www/rails-web-starter/config/database.yml
       - ./production/public/uploads:/var/www/rails-web-starter/public/uploads
       - ./production/log/production.log:/var/www/rails-web-starter/log/production.log
+      
     env_file:
       - .env
     depends_on:
@@ -31,10 +32,14 @@ services:
     volumes:
       - ./:/usr/share/nginx/html
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      #- ./nginx/my-site.com.crt:/etc/nginx/my-site.com.crt # Symlink ssl signed certificate 
+      #- ./nginx/my-site.com.key:/etc/nginx/my-site.com.key # Symlink server key for SSL config
+      #- ./nginx/nginx.ssl.conf:/etc/nginx/nginx.conf  # For use for ssl configuration and remove/comment out line no 34
       - ./nginx/nginx.access.log:/var/www/rails-web-starter/log/nginx.access.log
       - ./nginx/nginx.error.log:/var/www/rails-web-starter/log/nginx.error.log
     depends_on:
       - app
     ports:
       - 80:80
-      - 443:443
+      #- 443:443 # Enable this line for ssl config
+      

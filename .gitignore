@@ -3,3 +3,10 @@
 
 # Ignore git history
 .history
+
+# Ignore .env file
+.env
+
+# Ignore mysql-data folder
+mysql-data/*
+!mysql-data/.keep
